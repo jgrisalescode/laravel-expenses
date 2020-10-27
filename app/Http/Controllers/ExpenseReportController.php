@@ -61,7 +61,7 @@ class ExpenseReportController extends Controller
      */
     public function edit(ExpenseReport $expenseReport)
     {
-        //
+        return view('expenses.edit', ['report' => $expenseReport]);
     }
 
     /**
@@ -73,7 +73,9 @@ class ExpenseReportController extends Controller
      */
     public function update(Request $request, ExpenseReport $expenseReport)
     {
-        //
+        $expenseReport->title = $request->get('title');
+        $expenseReport->save();
+        return redirect('expense_reports');
     }
 
     /**

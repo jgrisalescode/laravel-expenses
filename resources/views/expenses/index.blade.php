@@ -12,6 +12,7 @@
             @foreach($expenses as $expense)
                 <tr>
                     <td>{{$expense->title}}</td>
+                    <td><a href="{{route('expense_reports.edit', [$expense->id])}}">Edit</a></td>
                 </tr>
             @endforeach
         </tbody>
