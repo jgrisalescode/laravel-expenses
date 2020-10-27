@@ -17,3 +17,4 @@ use App\Http\Controllers\DashboardController;
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/dashboard', [DashboardController::class, 'index']);
+Route::resource('/expense_reports', 'App\Http\Controllers\ExpenseReportController');
