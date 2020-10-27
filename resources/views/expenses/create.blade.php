@@ -1,7 +1,7 @@
 @extends('layouts.base')
 @section('content')
     <h1>New Report</h1>
-    <a class="btn btn-secondary" href={{route('expense_reports.create')}}>Create report</a>
+    <a class="btn btn-outline-secondary" href={{route('expense_reports.index')}}>Back</a>
     <form action="{{route('expense_reports.store')}}" method="POST">
         @csrf
         <div class="form-group">
