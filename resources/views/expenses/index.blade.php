@@ -11,7 +11,7 @@
         <tbody>
             @foreach($expenses as $expense)
                 <tr>
-                    <td>{{$expense->title}}</td>
+                    <td><a href="{{route('expense_reports.show', $expense)}}">{{$expense->title}}</a></td>
                     <td><a class="text-primary" href="{{route('expense_reports.edit', [$expense->id])}}">Edit</a></td>
                     <td>
                         <a class="text-danger" href="{{route('expense_reports.confirmDelete', [$expense->id])}}">Delete</a>

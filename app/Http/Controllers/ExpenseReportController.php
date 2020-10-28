@@ -36,9 +36,7 @@ class ExpenseReportController extends Controller
      */
     public function store(ExpenseReportRequest $request)
     {
-        $validData = $request->validate();
-        $report = new ExpenseReport();
-        $report->title = $validData->get('title');
+        $report = new ExpenseReport($request->validated());
         $report->save();
         return redirect('expense_reports');
     }
@@ -51,7 +49,8 @@ class ExpenseReportController extends Controller
      */
     public function show(ExpenseReport $expenseReport)
     {
-        //
+        $report = $expenseReport;
+        return view('expenses.show', compact('report'));
     }
 
     /**
@@ -68,14 +67,13 @@ class ExpenseReportController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\ExpenseReport  $expenseReport
-     * @return \Illuminate\Http\Response
+     * @param ExpenseReportRequest $request
+     * @param \App\Models\ExpenseReport $expenseReport
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update(ExpenseReportRequest $request, ExpenseReport $expenseReport)
     {
-        $validated = $request->validate();
-        $expenseReport->title = $validated->get('title');
+        $expenseReport->fill($request->validated());
         $expenseReport->save();
         return redirect('expense_reports');
     }
