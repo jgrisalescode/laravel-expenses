@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ExpenseReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,3 +19,4 @@ use App\Http\Controllers\DashboardController;
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/dashboard', [DashboardController::class, 'index']);
 Route::resource('/expense_reports', 'App\Http\Controllers\ExpenseReportController');
+Route::get('expense_reports/{expense_report}/confirmDelete', [ExpenseReportController::class, 'confirmDelete'])->name('expense_reports.confirmDelete');
