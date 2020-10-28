@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ExpenseReport;
-use Illuminate\Http\Request;
+use App\Http\Requests\ExpenseReportRequest;
 
 class ExpenseReportController extends Controller
 {
@@ -34,10 +34,11 @@ class ExpenseReportController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ExpenseReportRequest $request)
     {
+        $validData = $request->validate();
         $report = new ExpenseReport();
-        $report->title = $request->get('title');
+        $report->title = $validData->get('title');
         $report->save();
         return redirect('expense_reports');
     }
@@ -71,9 +72,10 @@ class ExpenseReportController extends Controller
      * @param  \App\Models\ExpenseReport  $expenseReport
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ExpenseReport $expenseReport)
+    public function update(ExpenseReportRequest $request, ExpenseReport $expenseReport)
     {
-        $expenseReport->title = $request->get('title');
+        $validated = $request->validate();
+        $expenseReport->title = $validated->get('title');
         $expenseReport->save();
         return redirect('expense_reports');
     }
